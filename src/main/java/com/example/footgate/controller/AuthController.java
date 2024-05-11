@@ -43,7 +43,7 @@ public class AuthController {
     @Autowired
     private CartRepositoty cartRepository;
 
-    @PostMapping("/signup")
+    @GetMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) {
         User isEmailExist = userRepository.findByEmail(user.getEmail());
         if (isEmailExist != null) {
@@ -71,7 +71,7 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(authResponse);
     }
 
-    @PostMapping("/signin")
+    @GetMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest req) {
         String username = req.getEmail();
         String password = req.getPassword();
